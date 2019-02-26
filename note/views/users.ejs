@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Users</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%=title%></h1>
+    <table>
+      <tr>
+        <th>No</th>
+        <th>Id</th>
+        <th>Password</th>
+        <th>Name</th><!DOCTYPE html>
+        <html>
+          <head>
+            <title>Users</title>
+            <link rel='stylesheet' href='/stylesheets/style.css' />
+          </head>
+          <body>
+            <table>
+                <tr>
+                  <th>No</th>
+                  <th>아이디</th>
+                  <th>비밀번호</th>
+                  <th>이름</th>
+                  <th>Email</th>
+                  <th>주소</th>
+                </tr>
+                <%for(var i = 0; i < users.length; i++) { %>
+                  <tr>
+                    <td><%=users[i].no%></td>
+                    <td><%=users[i].id%></td>
+                    <td><%=users[i].password%></td>
+                    <td><%=users[i].name%></td>
+                    <td><%=users[i].email%></td>
+                    <td><%=users[i].address%></td>
+                  </tr>
+                <%}%>
+            </table>
+          </body>
+        </html>
+        <th>Email</th>
+        <th>Address</th>
+      </tr>
+      <%for(var i = 0; i < users.length; i++) { %>
+        <tr>
+          <td><%=users[i].no%></td>
+          <td><%=users[i].id%></td>
+          <td><%=users[i].password%></td>
+          <td><%=users[i].name%></td>
+          <td><%=users[i].email%></td>
+          <td><%=users[i].address%></td>
+        </tr>
+      <%}%>
+    </table>
+  </body>
+</html>
