@@ -1,0 +1,44 @@
+<%include ./includes/header.ejs %>
+<div class="detail-wrap">
+    <div class="title-wrap">
+        <h3 class="post-title">
+            <%=note.b_title%>
+        </h3>
+        <div class="post-name-wrap">
+            <span class="post-info">by
+                <%=note.name%></span>
+            <span> | </span>
+            <span class="post-info">
+                <%=note.b_time%></span>
+        </div>
+    </div>
+    <div class="post-content-wrap">
+        <div class="post-content">
+            <%=note.b_content%>
+        </div>
+    </div>
+    <div class="post-btn-wrap">
+        <a href="/"><button type="button" class="btn btn-primary">목록보기</button></a>
+        <%if(session.user !== undefined) {%>
+            <%if(session.user.no == note.b_writer) {%>
+            <a href=<%="/notes/update/" +note.b_no%>><button type="button" class="btn btn-info">수정하기</button></a>
+            <button id="note-delete-btn" type="button" class="btn btn-danger">삭제하기</button>
+            <%}%>
+        <%}%>
+    </div>
+</div>
+<%include ./includes/footer.ejs %>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var delete_btn = document.getElementById('note-delete-btn');
+        var noteNum = '<%=note.b_no%>';
+        var form_submit = function () {
+            var form = document.createElement('form');
+            form.action = '/notes/delete/' + noteNum;
+            form.method = 'POST';
+            document.body.append(form);
+            form.submit();
+        }
+        delete_btn.addEventListener('click', form_submit, false);
+    });
+</script>
