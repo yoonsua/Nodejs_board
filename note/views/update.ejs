@@ -1,0 +1,28 @@
+<%include ./includes/header.ejs %>
+<div class="post-write-wrap">
+    <form id="update-form" method="POST">
+        <div class="form-group">
+            <label for="update-title">Title</label>
+            <input type="text" class="form-control" id="update-title" name="title" placeholder="글 제목을 작성해주세요.">
+            <small id="title-help" class="form-text text-muted">00자 이내로 제한됩니다.</small>
+        </div>
+        <div class="form-group">
+            <label for="update-content">Content</label>
+            <textarea style="resize:none;" class="form-control" id="update-content" name="content" rows="10"></textarea>
+            <small id="title-help" class="form-text text-muted">00자 이내로 제한됩니다.</small>
+        </div>
+        <div style="text-align:center;">
+            <button type="submit" class="btn btn-info">수정하기</button>
+        </div>
+    </form>
+</div>
+<%include ./includes/footer.ejs %>
+<script>
+    document.addEventListener("DOMContentLoaded", function () { // 값 넣어주기
+        var note = JSON.parse('<%-note%>');
+        var action = "/notes/update/" + note.b_no;
+        document.getElementById('update-title').value = note.b_title;
+        document.getElementById('update-content').value = note.b_content;
+        document.getElementById("update-form").action = action;
+    });
+</script>
