@@ -1,0 +1,50 @@
+<%include ./includes/header.ejs %>
+<div id="post-container">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th width="70%" scope="col">제목</th>
+        <th scope="col">작성자</th>
+        <th scope="col">작성일</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%for(var i =0; i<notes.length; i++){%>
+      <tr class="note-lists" data-id=<%=notes[i].b_no%>>
+        <th scope="row">
+          <%=notes[i].b_no%>
+        </th>
+        <td>
+          <%=notes[i].b_title%>
+        </td>
+        <td>
+          <%=notes[i].name%>
+        </td>
+        <td>
+          <%=notes[i].b_time%>
+        </td>
+      </tr>
+      <%}%>
+      </tbody>
+  </table>
+</div>
+<div class="write-btn-wrap">
+  <%if(session.user !== undefined) {%>
+  <a href="/notes"><button type="button" class="btn btn-primary">글쓰기</button></a>
+  <%}%>
+</div>
+<%include ./includes/footer.ejs %>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+      // Handler when the DOM is fully loaded
+      var notes = document.getElementsByClassName('note-lists');
+      var noteHandling = function() {
+          var id = this.dataset.id;
+          location.href= "/notes/"+id;
+      };
+      for(var i =0; i<notes.length; i++) {
+          notes[i].addEventListener('click', noteHandling, false);
+      }
+  });
+</script>
